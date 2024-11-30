@@ -7,15 +7,19 @@ document.getElementById('submission-form').addEventListener('submit', async (eve
 
     errorMessageDiv.style.display = 'none';
 
-    const name = document.getElementById('name').value;
-    const role = document.getElementById('role').value;
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const checkIn = document.getElementById('checkIn').value;
+    const checkOut = document.getElementById('checkOut').value;
+    const allergies = document.getElementById('allergies').value;
+    const organisation = document.getElementById('organisation').value;
     const password = document.getElementById('password').value;
 
     try {
         const response = await fetch('/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, role, password }),
+            body: JSON.stringify({ firstName, lastName, checkIn, checkOut, allergies, organisation, password }),
         });
 
         const data = await response.json();
