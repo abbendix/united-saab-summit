@@ -3,19 +3,19 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const router = express.Router();
+
 
 // Middleware to serve static files and parse request body
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route to serve the HTML form
-router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views', 'index.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
 // Route to handle form submission
-router.post('/submit', (req, res) => {
+app.post('/submit', (req, res) => {
     const { name, role, password } = req.body;
 
     // Backend validation
@@ -30,6 +30,14 @@ router.post('/submit', (req, res) => {
     res.send(`Submission successful! Welcome ${name}, your role is ${role}.`);
 });
 
-app.use('/api', router);
+
+if (require.main === module) {
+    const PORT = 3000;
+    app.listen(PORT, () => {
+      console.log(`Server running locally on http://localhost:${PORT}`);
+    });
+  }
+
+//app.use('/api', router);
 
 module.exports = app;
