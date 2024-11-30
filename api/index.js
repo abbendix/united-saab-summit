@@ -1,13 +1,16 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 
+app.use(cors());
 
 // Middleware to serve static files and parse request body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
-app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // Route to serve the HTML form
 app.get('/', (req, res) => {
@@ -18,16 +21,15 @@ app.get('/', (req, res) => {
 app.post('/submit', (req, res) => {
     const { name, role, password } = req.body;
 
-    // Backend validation
     if (!name || !role || !password) {
-        return res.status(400).send('All fields are required!');
+        return res.status(400).json({ error: 'All fields are required!' });
     }
 
     if (password !== '2532') {
-        return res.status(403).send('Invalid password!');
+        return res.status(403).json({ error: 'Invalid password!' });
     }
 
-    res.send(`Submission successful! Welcome ${name}, your role is ${role}.`);
+    res.status(200).json({ message: `Submission successful! Welcome ${name}, your role is ${role}.` });
 });
 
 
@@ -37,7 +39,5 @@ if (require.main === module) {
       console.log(`Server running locally on http://localhost:${PORT}`);
     });
   }
-
-//app.use('/api', router);
 
 module.exports = app;
