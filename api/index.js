@@ -1,9 +1,10 @@
+const { google } = require('googleapis');
 require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const { google } = require('googleapis');
+
 const fs = require('fs');
 
 const app = express();
@@ -14,19 +15,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Load Google Sheets API credentials
-const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS);
-const { client_email, private_key } = credentials;
+let credentials;
+try {
+    credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS);
+} catch (error) {
+    console.error('Failed to parse GOOGLE_SERVICE_ACCOUNT_CREDENTIALS:', error.message);
+    throw new Error('Ensure GOOGLE_SERVICE_ACCOUNT_CREDENTIALS is valid JSON.');
+}
+
+const { client_email } = credentials;
+const privateKey = credentials.private_key.replace(/\\n/g, '\n');
+
+const auth = new google.auth.JWT(client_email, null, privateKey, [
+    'https://www.googleapis.com/auth/spreadsheets',
+]);
 
 // Your Google Sheet ID
 const spreadsheetId = process.env.GOOGLE_SHEET_ID;
 
-// Create Google Auth client
-const auth = new google.auth.JWT(
-    client_email,
-    null,
-    private_key,
-    ['https://www.googleapis.com/auth/spreadsheets']
-);
 
 // Route to serve the HTML form
 app.get('/', (req, res) => {
