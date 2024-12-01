@@ -3,35 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submission Form</title>
+    <title>SAAB Executive Summit 2025</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Submission Form</h1>
-        <div id="error-message" style="color: red; display: none;"></div>
+        <!-- Header Section -->
+        <div class="header">
+            <img src="/saab-logo.png" alt="SAAB Logo" class="logo">
+            <h1>SAAB Executive Summit 2025</h1>
+            <p class="description">
+                Welcome to the SAAB Executive Summit 2025, taking place in Stockholm XX/XX. 
+                To confirm your participation and to make your stay as pleasant as possible, 
+                we need your RSVP through the form below, no later than XX/XX.
+            </p>
+        </div>
+
+        <!-- Form Section -->
         <form id="submission-form">
-            <label for="name">Surname:</label>
-            <input type="text" id="firstName" name="name" required value="Albin">
+            <div class="form-row">
+                <input type="text" id="firstName" name="firstName" placeholder="First name" required>
+                <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+            </div>
 
-            <label for="name">Lastname:</label>
-            <input type="text" id="lastName" name="name" required value="Malmgren">
+            <div class="form-row">
+                <input type="text" id="checkIn" name="checkIn"  placeholder="Hotel check-in date" required>
+                <input type="text" id="checkOut" name="checkOut"  placeholder="Hotel check-out date" required>
+            </div>
 
-            <label for="name">checkIn:</label>
-            <input type="text" id="checkIn" name="name" required value="2025-01-22">
-    
-            <label for="name">checkOut:</label>
-            <input type="text" id="checkOut" name="name" required value="2025-01-24">
+            <div class="form-group">
+                <input type="text" id="allergies" name="allergies" placeholder="Allergies / Dietary Preferences">
+            </div>
 
-            <label for="name">allergies:</label>
-            <input type="text" id="allergies" name="name" required value="Nuts">
-            
-            <label for="role">organisation:</label>
-            <input type="text" id="organisation" name="role" required value="SAAB HQ">
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required value="2532">
-            
+            <div class="form-group">
+                <input type="text" id="organisation" name="organisation" placeholder="Organization and/or Department" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Enter Password to submit the form you've got in the invite." required>
+            </div>
+
+            <div id="error-message" class="error-message" style="display: none;">Please fill in all required fields.</div>
+
             <button type="submit">Submit</button>
         </form>
     </div>
