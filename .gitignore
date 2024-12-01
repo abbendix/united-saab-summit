@@ -24,4 +24,3 @@ Thumbs.db
 # Build files
 dist/
 build/
-google-credentials.json
