@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -14,11 +12,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Load Google Sheets API credentials
-const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS);
+const credentials = JSON.parse(fs.readFileSync('google-credentials.json', 'utf8'));
 const { client_email, private_key } = credentials;
 
 // Your Google Sheet ID
-const spreadsheetId = process.env.GOOGLE_SHEET_ID;
+const spreadsheetId = '1Zn7cdUNhlV4Rh0rNMD2GjWpGTvVtObvomORn1tf8TQQ';
+
 
 // Create Google Auth client
 const auth = new google.auth.JWT(
