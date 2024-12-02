@@ -1,7 +1,8 @@
 /* General Styling */
 body {
-    font-family: 'Aktiv Grotesk', sans-serif;
+    font-family: 'Aktiv Grotesk', Arial, Helvetica, sans-serif;
     background-color: #373737;
+    letter-spacing: .03em;
     color: #d9d9d6;
     margin: 0;
     padding: 0;
@@ -15,7 +16,7 @@ body {
 .container {
     width: 100%;
     max-width: 450px;
-    padding: 20px;
+    padding: 5px;
     box-sizing: border-box;
 }
 
@@ -124,6 +125,6 @@ button:hover {
     }
 
     .container {
-        margin: 20px; /* Add spacing around the content */
+        margin: 10px; /* Add spacing around the content */
     }
 }
