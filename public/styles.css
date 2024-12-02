@@ -11,9 +11,12 @@ body {
     height: 100vh;
 }
 
+/* Container */
 .container {
     width: 100%;
     max-width: 450px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .header {
@@ -118,5 +121,9 @@ button:hover {
     button {
         padding: 12px;
         font-size: 14px;
+    }
+
+    .container {
+        margin: 20px; /* Add spacing around the content */
     }
 }
