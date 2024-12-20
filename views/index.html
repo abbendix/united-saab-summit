@@ -3,50 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>SAAB Executive Summit 2025</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+    <video autoplay muted loop id="bgVideo">
+        <source src="/summit25-bg.webm" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
     <div class="container">
         <!-- Header Section -->
         <div class="header">
             <img src="/saab-logo.png" alt="SAAB Logo" class="logo">
-            <h1>SAAB Executive Summit 2025</h1>
+            <h2>We look forward to welcoming you all to Stockholm on May 6th for the 2025 TMC. </h2>
             <p class="description">
-                Welcome to the SAAB Executive Summit 2025, taking place in Stockholm XX/XX. 
-                To confirm your participation and to make your stay as pleasant as possible, 
-                we need your RSVP through the form below, no later than XX/XX.
+                The purpose of the TMC is to network, explore strategic issues, educate, and inspire us in driving our business forward. The conference gathers approximately 180 top managers from across Saab, and this year, it will also include some of our top talents.
+            </p>
+            <p class="description">
+                Please confirm your participation by completing the registration form below, no later than January 31st.
             </p>
         </div>
 
         <!-- Form Section -->
         <form id="submission-form">
             <div class="form-row">
-                <input type="text" id="firstName" name="firstName" placeholder="First name" required>
-                <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
             </div>
-
+            <div class="form-group">
+                <input type="text" id="organisation" name="organisation" placeholder="Position held in the organization/department" required>
+            </div>
             <div class="form-row">
-                <input type="text" id="checkIn" name="checkIn"  placeholder="Hotel check-in date" required>
-                <input type="text" id="checkOut" name="checkOut"  placeholder="Hotel check-out date" required>
+                <input type="text" id="checkIn" name="checkIn"  placeholder="Hotel Check-in Date" required>
+                <input type="text" id="checkOut" name="checkOut"  placeholder="Hotel Check-out Date" required>
             </div>
-
             <div class="form-group">
-                <input type="text" id="allergies" name="allergies" placeholder="Allergies / Dietary Preferences">
+                <input type="text" id="allergies" name="allergies" placeholder="Allergies or Dietary Requirements">
             </div>
-
             <div class="form-group">
-                <input type="text" id="organisation" name="organisation" placeholder="Organization and/or Department" required>
+                <input type="text" id="password" name="password" placeholder="Additional Information (e.g., special requests or needs)" required>
             </div>
-
-            <div class="form-group">
-                <input type="password" id="password" name="password" placeholder="Enter Password to submit the form you've got in the invite." required>
-            </div>
-
             <div id="error-message" class="error-message" style="display: none;">Please fill in all required fields.</div>
-
             <button type="submit">Submit</button>
         </form>
+        <p class="request-info">
+            If you have any questions or require further assistance, 
+            feel free to contact Cimberly Nylander or the team at
+            <a href="mailto:CorporateEvent@saabgroup.com">CorporateEvent@saabgroup.com</a>.
+        </p>
+    </div>
+    <div class="success-container">
+        <h1>Confirmation of Your Registration for the 2025 Top Management Conference</h1>
+        Thank you for registering!
+        We are pleased to confirm your participation in the 2025 Top Management Conference. Your registration has been successfully received, and we look forward to welcoming you on May 6th for an inspiring day filled with insights, networking, and collaboration.
+        If you have any questions or need to update your information, feel free to contact Cimberly Nylander or the team at CorporateEvent@saabgroup.com. 
+        
     </div>
 </body>
 </html>

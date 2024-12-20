@@ -1,7 +1,10 @@
 /* General Styling */
 body {
+    position: relative;
+    z-index: 1;
+    /* Existing styles */
     font-family: 'Aktiv Grotesk', Arial, Helvetica, sans-serif;
-    background-color: #373737;
+    background-color: transparent; /* Changed to transparent */
     letter-spacing: .03em;
     color: #d9d9d6;
     margin: 0;
@@ -12,12 +15,17 @@ body {
     height: 100vh;
 }
 
+
 /* Container */
 .container {
     width: 100%;
-    max-width: 450px;
+    max-width: 600px;
     padding: 5px;
     box-sizing: border-box;
+}
+
+.success-container {
+    display: none;
 }
 
 .header {
@@ -26,11 +34,22 @@ body {
 }
 
 .logo {
-    width: 150px;
+    width: 200px;
+    margin-top: 15px;
     margin-bottom: 15px;
 }
 
-h1 {
+#bgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+h2 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -42,6 +61,13 @@ h1 {
     color: #bbbbbb;
     margin-bottom: 20px;
 }
+
+.request-info {
+    font-size: 12px;
+    color: #bbbbbb;
+    margin-top: 40px;
+    margin-bottom: 40px;
+} 
 
 /* Form Styling */
 form {
@@ -58,7 +84,7 @@ form {
 .form-row input,
 .form-group input {
     flex: 1;
-    background: #34332D;
+    background: #000; /*#34332D;*/
     color: #d9d9d6;
     border: none;
     border-bottom: 1px solid #555550;
@@ -67,16 +93,22 @@ form {
 
 }
 
+a {
+    color: #fff;
+}
+
 .form-group input {
     width: 98%;
 }
+
+
 
 form input::placeholder {
     color: #999;
 }
 
 button {
-    background-color: #34332D;
+    background-color: #000;
     color: #ffb600;
     border: 1px solid #ffb600;
     border-radius: 5px;
