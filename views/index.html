@@ -10,9 +10,8 @@
 <body>
     <video autoplay playsinline muted loop id="bgVideo">
         <source src="/sum25-bg.mp4" type="video/mp4">
-        <source src="/summit25-bg.webm" type="video/webm">
     </video>
-    <div class="container">
+    <div class="container" id="reg-section">
         <!-- Header Section -->
         <div class="header">
             <img src="/saab-logo.png" alt="SAAB Logo" class="logo">
@@ -42,23 +41,24 @@
                 <input type="text" id="allergies" name="allergies" placeholder="Allergies or Dietary Requirements">
             </div>
             <div class="form-group">
-                <input type="text" id="password" name="password" placeholder="Additional Information (e.g., special requests or needs)" required>
+                <input type="text" id="additional" name="additional" placeholder="Additional Information (e.g., special requests or needs)">
             </div>
             <div id="error-message" class="error-message" style="display: none;">Please fill in all required fields.</div>
             <button type="submit">Submit</button>
         </form>
-        <p class="request-info">
+        <div class="request-info">
             If you have any questions or require further assistance, 
             feel free to contact Cimberly Nylander or the team at
             <a href="mailto:CorporateEvent@saabgroup.com">CorporateEvent@saabgroup.com</a>.
-        </p>
+        </div>
     </div>
-    <div class="success-container">
+    <div id="success-section">
         <h1>Confirmation of Your Registration for the 2025 Top Management Conference</h1>
-        Thank you for registering!
+        <p>Thank you for registering!</p>
         We are pleased to confirm your participation in the 2025 Top Management Conference. Your registration has been successfully received, and we look forward to welcoming you on May 6th for an inspiring day filled with insights, networking, and collaboration.
-        If you have any questions or need to update your information, feel free to contact Cimberly Nylander or the team at CorporateEvent@saabgroup.com. 
-        
+        <p>
+            If you have any questions or need to update your information, feel free to contact Cimberly Nylander or the team at <a href="mailto:CorporateEvent@saabgroup.com">CorporateEvent@saabgroup.com</a>. 
+        </p>
     </div>
 </body>
 </html>

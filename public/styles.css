@@ -1,10 +1,20 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 /* General Styling */
 body {
+    animation: fadeIn 2s ease-in-out;
     position: relative;
     z-index: 1;
     /* Existing styles */
     font-family: 'Aktiv Grotesk', Arial, Helvetica, sans-serif;
-    background-color: transparent; /* Changed to transparent */
+    background-color: #000;/*transparent;  Changed to transparent */
     letter-spacing: .03em;
     color: #d9d9d6;
     margin: 0;
@@ -12,20 +22,36 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-   /* height: 100vh;*/
+    height: 100vh;
 }
 
 
 /* Container */
 .container {
     width: 100%;
-    max-width: 450px;
+    max-width: 650px;
+    padding: 5px;
+    box-sizing: border-box;
+    position: absolute;
+    top:0;
+}
+
+#success-section, #login-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 550px;
     padding: 5px;
     box-sizing: border-box;
 }
 
-.success-container {
+#success-section {
     display: none;
+}
+
+#login-section {
+    max-width: 350px;
 }
 
 .header {
@@ -35,7 +61,7 @@ body {
 
 .logo {
     width: 200px;
-    margin-top: 15px;
+    margin-top: 25px;
     margin-bottom: 15px;
 }
 
@@ -101,8 +127,6 @@ a {
     width: 98%;
 }
 
-
-
 form input::placeholder {
     color: #999;
 }
@@ -156,7 +180,7 @@ button:hover {
         font-size: 14px;
     }
 
-    .container {
+    .container, #success-section {
         margin: 10px; /* Add spacing around the content */
     }
 }
