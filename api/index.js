@@ -4,11 +4,12 @@ const session = require('express-session');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-
-const fs = require('fs');
-
 const app = express();
+const { Pool } = require('pg');
 
+const pool = new Pool({
+    connectionString: process.env.POSTGRES_URL, // Add POSTGRES_URL to your environment variables
+});
 
 app.use(cors());
 app.use(express.json());
@@ -97,10 +98,26 @@ app.post('/submit', async (req, res) => {
         };
 
         await sheets.spreadsheets.values.append(request);
+        
+        try {
+            const query = `
+                INSERT INTO tmc25 (first_name, last_name, organisation, check_in, check_out, allergies, additional)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
+            `;
+            const values = [firstName, lastName, organisation, checkIn, checkOut, allergies, additional];
+    
+            await pool.query(query, values);
+    
+            console.error('Success saving to Postgres');
+        } catch (error) {
+            console.error('Error saving to Postgres:', error.message);
+        }
+
+
         res.status(200).json({ message: `Submission successful! Welcome ${firstName}.` });
     } catch (error) {
         console.error('Error saving to Google Sheet:', error.message);
-        res.status(500).json({ error: 'Failed to save data to Google Sheet.' });
+        res.status(500).json({ error: 'Failed to save data, try again or please contact Cimberly.' });
     }
 
 });
