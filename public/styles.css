@@ -48,6 +48,8 @@ body {
 
 #success-section {
     display: none;
+    width: 100%;
+    text-align: center;
 }
 
 #login-section {
@@ -178,9 +180,5 @@ button:hover {
     button {
         padding: 12px;
         font-size: 14px;
-    }
-
-    .container, #success-section {
-        margin: 10px; /* Add spacing around the content */
     }
 }
