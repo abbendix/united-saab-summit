@@ -52,3 +52,21 @@ document.getElementById('submission-form').addEventListener('submit', async (eve
 document.addEventListener("DOMContentLoaded", function() {
     document.body.style.animation = "fadeIn 2s ease-in-out";
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dateFields = [document.getElementById('checkIn'), document.getElementById('checkOut')];
+
+    dateFields.forEach(field => {
+        field.addEventListener('focus', () => {
+            if (!field.flatpickrInstance) {
+                field.flatpickrInstance = flatpickr(field, {
+                    dateFormat: 'Y-m-d', // Adjust format to your preference
+                    onClose: () => {
+                        field.flatpickrInstance.destroy(); // Destroy instance to avoid multiple overlays
+                        field.flatpickrInstance = null;
+                    },
+                });
+            }
+        });
+    });
+});

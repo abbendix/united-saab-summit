@@ -113,7 +113,6 @@ app.post('/submit', async (req, res) => {
             console.error('Error saving to Postgres:', error.message);
         }
 
-
         res.status(200).json({ message: `Submission successful! Welcome ${firstName}.` });
     } catch (error) {
         console.error('Error saving to Google Sheet:', error.message);
