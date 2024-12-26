@@ -134,6 +134,15 @@ form input::placeholder {
     color: #999;
 }
 
+/* Add focus styles to input fields */
+input:focus, textarea:focus{
+    outline: none; /* Remove the default outline */
+    border-bottom: 1px solid #ffb600; /* Add a colored bottom border */
+    background-color: #111; /* Slightly darker background */
+    color: #ffffff; /* Keep the text color white for better contrast */
+    transition: all 0.3s ease-in-out; /* Smooth transition for the changes */
+}
+
 button {
     background-color: #000;
     color: #ffb600;
@@ -146,7 +155,8 @@ button {
     margin-top:20px;
 }
 
-button:hover {
+button:hover, button:focus  {
+    outline: none;
     background-color: #ffb600;
     color: #34332D;
 }
@@ -171,28 +181,6 @@ button:hover {
     border-radius: 5px;
     margin-bottom: 15px;
 }
-
-.flatpickr-calendar {
-    background: #000;
-    color: #d9d9d6;
-    border: 1px solid #555550;
-    font-family: 'Aktiv Grotesk', Arial, Helvetica, sans-serif;
-}
-
-.flatpickr-day {
-    color: #d9d9d6;
-}
-
-.flatpickr-day:hover, .flatpickr-day:focus {
-    background: #555550;
-    color: #ffffff;
-}
-
-.flatpickr-day.selected {
-    background: #ffb600;
-    color: #000;
-}
-
 
 /* Responsive Styling */
 @media (max-width: 600px) {

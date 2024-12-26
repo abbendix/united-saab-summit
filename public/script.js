@@ -49,24 +49,28 @@ document.getElementById('submission-form').addEventListener('submit', async (eve
     }
 })
 
-document.addEventListener("DOMContentLoaded", function() {
+
+document.addEventListener("DOMContentLoaded", function () {
     document.body.style.animation = "fadeIn 2s ease-in-out";
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const dateFields = [document.getElementById('checkIn'), document.getElementById('checkOut')];
+    // Add focus event listeners for checkIn and checkOut fields
+    const checkInField = document.getElementById('checkIn');
+    const checkOutField = document.getElementById('checkOut');
 
-    dateFields.forEach(field => {
-        field.addEventListener('focus', () => {
-            if (!field.flatpickrInstance) {
-                field.flatpickrInstance = flatpickr(field, {
-                    dateFormat: 'Y-m-d', // Adjust format to your preference
-                    onClose: () => {
-                        field.flatpickrInstance.destroy(); // Destroy instance to avoid multiple overlays
-                        field.flatpickrInstance = null;
-                    },
-                });
-            }
-        });
+    checkInField.addEventListener('focus', () => {
+        checkInField.placeholder = 'DD-MM-YYYY';
+    });
+
+    checkOutField.addEventListener('focus', () => {
+        checkOutField.placeholder = 'DD-MM-YYYY';
+    });
+
+    // Optionally reset placeholder when focus is lost
+    checkInField.addEventListener('blur', () => {
+        checkInField.placeholder = 'Hotel Check-in Date';
+    });
+
+    checkOutField.addEventListener('blur', () => {
+        checkOutField.placeholder = 'Hotel Check-out Date';
     });
 });

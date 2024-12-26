@@ -77,8 +77,42 @@ app.post('/submit', async (req, res) => {
     
     const { firstName, lastName, checkIn, checkOut, allergies, organisation, additional } = req.body;
 
+    // Function to validate DD-MM-YYYY format
+    function isValidDate(dateString) {
+        const dateRegex = /^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/;
+        if (!dateRegex.test(dateString)) return false;
+
+        const [day, month, year] = dateString.split('-').map(Number);
+        const date = new Date(year, month - 1, day);
+
+        return (
+            date.getFullYear() === year &&
+            date.getMonth() === month - 1 &&
+            date.getDate() === day
+        );
+    }
+
+    // Function to check logical order of dates
+    function areDatesValid(checkIn, checkOut) {
+        const [dayIn, monthIn, yearIn] = checkIn.split('-').map(Number);
+        const [dayOut, monthOut, yearOut] = checkOut.split('-').map(Number);
+
+        const checkInDate = new Date(yearIn, monthIn - 1, dayIn);
+        const checkOutDate = new Date(yearOut, monthOut - 1, dayOut);
+
+        return checkOutDate > checkInDate;
+    }
+
     if (!firstName || !lastName || !checkIn || !checkOut || !organisation) {
         return res.status(400).json({ error: 'All fields are required!' });
+    }
+
+    if (!isValidDate(checkIn) || !isValidDate(checkOut)) {
+        return res.status(400).json({ error: 'Dates must be in DD-MM-YYYY format and valid.' });
+    }
+
+    if (!areDatesValid(checkIn, checkOut)) {
+        return res.status(400).json({ error: 'Check-out date must be after check-in date.' });
     }
 
     // Save data to Google Sheet
