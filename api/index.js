@@ -103,16 +103,20 @@ app.post('/submit', async (req, res) => {
         return checkOutDate > checkInDate;
     }
 
-    if (!firstName || !lastName || !checkIn || !checkOut || !organisation) {
-        return res.status(400).json({ error: 'All fields are required!' });
+    if (!firstName || !lastName || !organisation) {
+        return res.status(400).json({ error: 'First Name, Last Name, and Organisation are required!' });
     }
 
-    if (!isValidDate(checkIn) || !isValidDate(checkOut)) {
-        return res.status(400).json({ error: 'Dates must be in DD-MM-YYYY format and valid.' });
+    if (checkIn && !isValidDate(checkIn)) {
+        return res.status(400).json({ error: 'Check-in date must be in DD-MM-YYYY format if provided.' });
     }
 
-    if (!areDatesValid(checkIn, checkOut)) {
-        return res.status(400).json({ error: 'Check-out date must be after check-in date.' });
+    if (checkOut && !isValidDate(checkOut)) {
+        return res.status(400).json({ error: 'Check-out date must be in DD-MM-YYYY format if provided.' });
+    }
+
+    if (checkIn && checkOut && !areDatesValid(checkIn, checkOut)) {
+        return res.status(400).json({ error: 'Check-out date must be after check-in date if both are provided.' });
     }
 
     // Save data to Google Sheet
@@ -123,7 +127,7 @@ app.post('/submit', async (req, res) => {
         // Google Sheets API
         const sheets = google.sheets({ version: 'v4', auth });
 
-        const values = [[firstName, lastName, checkIn, checkOut, allergies, organisation, additional, new Date().toISOString()]];
+        const values = [[firstName, lastName, checkIn || '', checkOut || '', allergies, organisation, additional, new Date().toISOString()]];
         const request = {
             spreadsheetId,
             range: 'Summit', // Update range as per your sheet
@@ -138,7 +142,7 @@ app.post('/submit', async (req, res) => {
                 INSERT INTO tmc25 (first_name, last_name, organisation, check_in, check_out, allergies, additional)
                 VALUES ($1, $2, $3, $4, $5, $6, $7)
             `;
-            const values = [firstName, lastName, organisation, checkIn, checkOut, allergies, additional];
+            const values = [firstName, lastName, organisation, checkIn || null, checkOut || null, allergies, additional];
     
             await pool.query(query, values);
     

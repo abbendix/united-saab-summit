@@ -13,7 +13,7 @@ document.getElementById('submission-form').addEventListener('submit', async (eve
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
     const checkIn = document.getElementById('checkIn').value;
-    const checkOut = document.getElementById('checkOut').value;
+    const checkOut = document.getElementById('checkOut').value;    
     const allergies = document.getElementById('allergies').value;
     const organisation = document.getElementById('organisation').value;
     const additional = document.getElementById('additional').value;
@@ -31,24 +31,15 @@ document.getElementById('submission-form').addEventListener('submit', async (eve
             errorMessageDiv.style.display = 'block';
             errorMessageDiv.textContent = data.error;
         } else {
-            
-            // Hide and reset the form
             regSection.style.display = 'none';
             successSection.style.display = 'block';               
             formElement.reset();
-            //formElement.style.display = 'none';
-
-            // Show the success message
-            //successMessageDiv.textContent = data.message;
-            //successMessageDiv.classList.add('success-message'); // Add the CSS class
-            //formElement.parentNode.appendChild(successMessageDiv); // Add success message to the page
         }
     } catch (err) {
         errorMessageDiv.style.display = 'block';
         errorMessageDiv.textContent = 'An unexpected error occurred.';
     }
 })
-
 
 document.addEventListener("DOMContentLoaded", function () {
     document.body.style.animation = "fadeIn 2s ease-in-out";
